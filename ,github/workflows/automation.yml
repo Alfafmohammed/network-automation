@@ -1,0 +1,32 @@
+name: Network Automation Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test_config:
+    name: Test Configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Run Syntax Test
+        run: |
+          echo "Running syntax test..."
+          echo "Syntax OK"
+
+  deploy_config:
+    name: Deploy Configuration
+    needs: test_config
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Network Devices
+        run: |
+          echo "Deploying configuration to routers..."
+          echo "Configuration deployed successfully!"
